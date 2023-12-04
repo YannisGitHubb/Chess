@@ -1,0 +1,36 @@
+import javax.swing.*;
+import java.awt.*;
+
+public class App {
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Chess");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(1500, 900);
+        
+        // Création du panel pour la grille d'échecs
+        JPanel chessBoard = new JPanel(new GridLayout(8, 8));
+        boolean isWhite = false;
+        
+        // Ajout des cases à la grille
+        for (int i = 0; i < 64; i++) {
+            JPanel square = new JPanel();
+            if (isWhite) {
+                square.setBackground(Color.WHITE);
+            } else {
+                square.setBackground(Color.BLACK);
+            }
+            chessBoard.add(square);
+            
+            // Alterner les couleurs
+            isWhite = !isWhite;
+            if (i % 8 == 7) { // Changer de ligne
+                isWhite = !isWhite;
+            }
+        }
+
+        // Ajout du panel de la grille d'échecs au frame
+        frame.add(chessBoard);
+        frame.setVisible(true);
+    }
+}
